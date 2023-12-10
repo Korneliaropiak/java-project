@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Library</title>
@@ -26,23 +24,33 @@
         </div>
     </div>
 </nav>
+<div class="container mt-3">
+    <a href="/books/add" class="btn btn-primary">Add New Book</a>
+</div>
+
 <div class="container">
     <div class="row col-md-10">
-        <h2>List of Registered Users</h2>
+        <h2>Books List</h2>
     </div>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Borrower</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each = "user : ${users}">
-            <td th:text = "${user.firstName}"></td>
-            <td th:text = "${user.lastName}"></td>
-            <td th:text = "${user.email}"></td>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}">Title</td>
+            <td th:text="${book.author}">Author</td>
+            <td th:text="${book.rentedBy != null ? book.rentedBy.email : 'Not borrowed'}">Borrower</td>
+            <td>
+                <a th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a> |
+                <a th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a> |
+                <a th:href="@{/books/return/{id}(id=${book.id})}">Return to library</a>
+            </td>
         </tr>
         </tbody>
     </table>
