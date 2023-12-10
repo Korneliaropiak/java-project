@@ -1,9 +1,6 @@
 package com.lab.library.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -12,14 +9,23 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private boolean available;
+
+    @ManyToOne
+    private User rentedBy;
 
     public Book() {
     }
-    public Book(String title, String author, boolean available) {
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
-        this.available = available;
+    }
+
+    public User getRentedBy() {
+        return rentedBy;
+    }
+
+    public void setRentedBy(User rentedBy) {
+        this.rentedBy = rentedBy;
     }
     public Long getId() {
         return id;
@@ -45,13 +51,6 @@ public class Book {
         this.author = author;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 }
 
 

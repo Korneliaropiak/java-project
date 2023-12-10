@@ -39,4 +39,13 @@ public class User
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
     private List<Role> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "rentedBy")
+    private List<Book> rentedBooks = new ArrayList<>();
+
+    public void rentBook(Book book) {
+        if (book != null && book.getRentedBy() == null) {
+            rentedBooks.add(book);
+            book.setRentedBy(this);
+        }
+    }
 }
