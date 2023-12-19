@@ -45,6 +45,7 @@ public class LibraryApplication implements CommandLineRunner {
 		User admin = new User();
 		admin.setName("Kornelia R");
 		admin.setEmail("k@wp.pl");
+		System.out.println(passwordEncoder.encode("123"));
 		admin.setPassword(passwordEncoder.encode("123"));
 		admin.setRoles(Arrays.asList(role));
 		userRepository.save(admin);

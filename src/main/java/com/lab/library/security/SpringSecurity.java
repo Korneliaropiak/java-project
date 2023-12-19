@@ -15,10 +15,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity {
-
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -28,10 +26,15 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
+                        authorize.requestMatchers("/register/**", "/index", "/api/books/**").permitAll()
                                 .requestMatchers("/rented-books").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/books/**").hasRole("ADMIN")
+                                .requestMatchers("/books").hasRole("ADMIN")
+                                .requestMatchers("/books/add").hasRole("ADMIN")
+                                .requestMatchers("/books/edit/**").hasRole("ADMIN")
+                                .requestMatchers("/books/update/**").hasRole("ADMIN")
+                                .requestMatchers("/books/delete/**").hasRole("ADMIN")
+                                .requestMatchers("/books/return/**").hasRole("ADMIN")
+                                .requestMatchers("/books/rent/**").hasRole("USER")
                                 .requestMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form

@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+        <a class="navbar-brand" th:href="@{/index}">Library</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,8 +43,7 @@
                         method="post"
                         role="form"
                         th:action="@{/register/save}"
-                        th:object="${user}"
-                >
+                        th:object="${user}">
                     <div class="form-group mb-3">
                         <label class="form-label">First Name</label>
                         <input
@@ -53,8 +52,7 @@
                                 name="firstName"
                                 placeholder="Enter first name"
                                 th:field="*{firstName}"
-                                type="text"
-                        />
+                                type="text"/>
                         <p th:errors = "*{firstName}" class="text-danger"
                            th:if="${#fields.hasErrors('firstName')}"></p>
                     </div>
@@ -67,8 +65,7 @@
                                 name="lastName"
                                 placeholder="Enter last name"
                                 th:field="*{lastName}"
-                                type="text"
-                        />
+                                type="text"/>
                         <p th:errors = "*{lastName}" class="text-danger"
                            th:if="${#fields.hasErrors('lastName')}"></p>
                     </div>
@@ -81,8 +78,7 @@
                                 name="email"
                                 placeholder="Enter email address"
                                 th:field="*{email}"
-                                type="email"
-                        />
+                                type="email"/>
                         <p th:errors = "*{email}" class="text-danger"
                            th:if="${#fields.hasErrors('email')}"></p>
                     </div>
@@ -95,8 +91,7 @@
                                 name="password"
                                 placeholder="Enter password"
                                 th:field="*{password}"
-                                type="password"
-                        />
+                                type="password"/>
                         <p th:errors = "*{password}" class="text-danger"
                            th:if="${#fields.hasErrors('password')}"></p>
                     </div>
